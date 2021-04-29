@@ -27,20 +27,20 @@ public class Cliente implements Serializable {
 	
 	@Id
 	@Column(name="identificador",nullable = false, length = 15)
-	@NotEmpty(message ="El parametro identificador no puede quedar en blanco.")
-	@NotNull(message = "El parametro identificador no puede ser nulo.")
-	@Size(max= 15, message = "El parametro identificador no puede tener un tamaño superior a 15 caracteres.")
+	@NotEmpty(message ="El parámetro identificador no puede quedar en blanco.")
+	@NotNull(message = "El parámetro identificador no puede ser nulo.")
+	@Size(max= 15, message = "El parámetro identificador no puede tener un tamaño superior a 15 caracteres.")
 	private String id;
 	
 	@Column(name="nombre",nullable = false, length = 60)
-	@NotEmpty(message ="El parametro nombre no puede quedar en blanco.")
-	@NotNull(message = "El parametro nombre no puede ser nulo.")
-	@Size(max = 15,message = "El parametro nombre no puede tener un tamaño superior a 60 caracteres.")
+	@NotEmpty(message ="El parámetro nombre no puede quedar en blanco.")
+	@NotNull(message = "El parámetro nombre no puede ser nulo.")
+	@Size(max = 60,message = "El parámetro nombre no puede tener un tamaño superior a 60 caracteres.")
 	private String nombre;
 	
 	@Column(name="correo", length = 60)
-	@Size(max = 15,message = "El parametro correo correo no puede tener un tamaño superior a 60 caracteres.")
-	@Email(message = "El parametro correo debe tener un correo valido.")
+	@Size(max = 60,message = "El parámetro correo no puede tener un tamaño superior a 60 caracteres.")
+	@Email(message = "El parámetro correo debe tener un correo valido.")
 	private String correo;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "clienteId")

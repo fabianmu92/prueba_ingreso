@@ -13,7 +13,10 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NegativeOrZero;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name="deudas")
@@ -26,27 +29,26 @@ public class Deuda implements Serializable{
 	
 	@Id
 	@Column(name="identificador",nullable=false, length = 15)
-	@NotEmpty(message ="No parametro identificador no puede quedar en blanco.")
-	@Size(max= 15, message = "El parametro identificador no puede tener un tamaño superior a 15 caracteres.")
-	@NotNull(message = "El parametro identificador no puede ser nulo.")
+	@NotEmpty(message ="El parámetro identificador no puede quedar en blanco.")
+	@Size(max= 15, message = "El parámetro identificador no puede tener un tamaño superior a 15 caracteres.")
+	@NotNull(message = "El parámetro identificador no puede ser nulo.")
 	private String id;
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name="fecha_vencimiento")
-	@NotNull(message = "El parametro fecha de vencimiento no puede ser nulo.")
-	@NotEmpty(message ="El parametro fecha de vencimiento no puede quedar en blanco.")
+	@JsonFormat(pattern="dd-MM-yyyy")
+//	@NotNull(message = "El parámetro fecha de vencimiento no puede ser nulo.")
 	private Date fechaVencimiento;
 	
 	@Column(name="monto", precision = 20, nullable = false)
-	@NotEmpty(message ="No parametro monto no puede quedar en blanco.")
-	@NegativeOrZero(message="El monto no puede ser una cantidad positiva superior a 0.")
-	@NotNull(message = "El parametro monto no puede ser nulo.")
+	@NotNull(message = "El parámetro monto no puede ser nulo.")
+	@PositiveOrZero(message="El parámetro monto debe ser superior a 0.")
 	private BigDecimal monto;
 	
 	/*@ManyToOne(optional = false)
 	private Cliente cliente;*/
 	@Column(name="cliente_identificador",nullable=false, length = 15)
-	@NotNull(message = "El parametro clienId no puede ser nulo.")
+	@NotNull(message = "El parámetro clienteId no puede ser nulo.")
 	private String clienteId;
 
 	public String getId() {
